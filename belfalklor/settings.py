@@ -114,12 +114,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-SHORT_DATE_FORМAT = 'j.m.Y'
-SHORT_DATETIМE_FORМAT = 'j.m.Y H:i:s'
-DATE_FORМAT = 'j Е У'
-DATETIМE_FORМAT = 'j Е У H:i:s'
-ТIМЕ FORМAT = 'H:i:s'
-FIRST_DAY_OF_WEEK = 1
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/

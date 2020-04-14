@@ -10,7 +10,7 @@ class Stones(models.Model):
         verbose_name_plural = 'Камяні'
         verbose_name = 'Камень'
         ordering = ['title']
-        order_with_respect_to = 'typ'
+        #order_with_respect_to = 'typ'
         unique_together = ('title', 'place')
 
 class Typ(models.Model):
