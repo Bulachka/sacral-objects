@@ -25,7 +25,7 @@ SECRET_KEY = 'vl!f^0zfix+aad$&m(ssmvvvhl4j(&kfod-301#kq&tis=_47b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [avalodzina.pythonanywhere.com]
+ALLOWED_HOSTS = ['127.0.0.1', 'avalodzina.pythonanywhere.com']
 
 
 # Application definition
