@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type"
+		content="text/html; charset=utf-8">
+		<link rel="stylesheet" type="text/css"
+		href="{% static 'volumbf/style.css' %}">
+		<title>{% block title %}Main{% endblock %} - Sacral objects</title>
+	</head>
+	<body>
+		<header>
+			<hl>Sacral objects</hl>
+		</header>
+		<nav>
+			<a href="{% url 'index' %}">Main</a>
+			<a href="{% url 'add' %}">Add</a>
+			{% for typ in typs %}
+			<a href="{% url 'by_typ' typ.pk %}">{{ typ.name }}</a>
+			{% endfor %}
+		</nav>
+		<section>
+		{% block content %}
+		{% endblock %}
+		</section>
+	</body>
+</html>
+

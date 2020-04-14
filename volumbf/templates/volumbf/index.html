@@ -1,0 +1,12 @@
+{% extends "layout/basic.html" %}
+
+{% block content %}
+{% for stones in stst %}
+<div class="b">
+	<h2>{{ stones.title }} </h2>
+	<p><a href="/volumbf/{{ stones.typ.pk }}/">{{ stones.typ.name }}</a></p>
+	<p>{{ stones.legend }} </p>
+	<p>{{ stones.place }}</p>
+</div>
+{% endfor %}
+{% endblock %}	

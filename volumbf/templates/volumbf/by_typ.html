@@ -1,0 +1,15 @@
+{% extends "layout/basic.html" %}
+
+{% block title %}{{ current_typ.name }}{% endblock %}
+
+{% block content %}
+<h2>Typ: {{ current_typ.name }}</h2>
+{% for stones in stst %}
+<div>
+	<h2>{{ stones.title }} </h2>
+	<p>{{ stones.legend }} </p>
+	<p>{{ stones.place }}</p>
+</div>
+{% endfor %}
+{% endblock %}
+
