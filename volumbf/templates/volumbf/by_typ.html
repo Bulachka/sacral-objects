@@ -6,7 +6,7 @@
 <h2>Typ: {{ current_typ.name }}</h2>
 {% for stones in stst %}
 <div>
-	<h2>{{ stones.title }} </h2>
+	<h2><a href="{% url 'stone_detail' stones.pk %}">{{ stones.title }} </h2>
 	<p>{{ stones.legend }} </p>
 	<p>{{ stones.place }}</p>
 </div>
