@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
+
 
 from .models import Stones
 from .models import Typ
@@ -30,4 +31,9 @@ class StonesCreateView(CreateView):
         context = super().get_context_data(**kwargs)
         context['typs'] = Typ.objects.all()
         return context
+
+
+def stone_detail(request, pk):
+    stones = get_object_or_404(Stones, pk=pk)
+    return render(request, 'volumbf/stone_detail.html', {'stones': stones})
 
