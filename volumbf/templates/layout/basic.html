@@ -19,6 +19,7 @@
 			{% for typ in typs %}
 			<a href="{% url 'by_typ' typ.pk %}">{{ typ.name }}</a>
 			{% endfor %}
+			{# <a href="{% url 'bibliography' %}">Bibliography</a> #}
 		</nav>
 		<section>
 		{% block content %}
