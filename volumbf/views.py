@@ -1,8 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 
-from .models import Stones
-from .models import Typ
+from .models import Stones, Typ, Mentions
 
 def index(request):
     stst = Stones.objects.all
@@ -35,5 +34,21 @@ class StonesCreateView(CreateView):
 
 def stone_detail(request, pk):
     stones = get_object_or_404(Stones, pk=pk)
-    return render(request, 'volumbf/stone_detail.html', {'stones': stones})
+    typs = Typ.objects.all()
+    return render(request, 'volumbf/stone_detail.html', {'stones': stones, 'typs': typs})
 
+"""
+def bibliography(request):
+    works = Mentions.objects.all()
+    return render(request, 'volumbf/bibliography.html', {'works': works})
+
+def work_detail(request, pk): #я акурат чытала, што поле айдзішнікаў не трэба яўна аб'яўляць, яно ствараецца аўтаматычна
+    work = get_object_or_404(Mentions, pk=pk)
+    author = get_object_or_404(Mentions, author=author)
+    return render(request, 'volumbf/work_detail.html', {'work': work, 'author': author})
+
+def author_detail(request, author): 
+    author = get_object_or_404(Mentions, author=author)
+    works = Mentions.objects.all()
+    return render(request, 'volumbf/author_detail.html', {'works': works, 'author': author})  
+"""

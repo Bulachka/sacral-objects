@@ -1,10 +1,16 @@
 from django.db import models
 
+def run_shell(use_plain=False):
+    from django.db.models.loading import get_models
+    loaded_models = get_models()
+
 class Stones(models.Model):
     title = models.CharField(max_length=30, verbose_name='Назва')
     place = models.TextField(verbose_name='Месцазнаходжанне')
     legend = models.TextField(null=True, blank=True, verbose_name='Легенда')
     typ = models.ForeignKey('Typ', null=True, on_delete=models.PROTECT, verbose_name='Тып')
+    def __str__(self):
+        return self.title
 
     class Meta:
         verbose_name_plural = 'Камяні'
@@ -22,13 +28,14 @@ class Typ(models.Model):
         verbose_name_plural = 'Тыпы'
         verbose_name = 'Тып'
         ordering = ['name']
-'''
+
 
 class Mentions(models.Model):
     author = models.CharField(max_length=50, verbose_name='Аўтар')
     work = models.TextField(verbose_name='Праца')
-    year = models.DateField(null=True, blank=True, verbose_name='Дата ўзгадкі')
-    sacral_objects = models.ManyToManyField(Stones, null=True, on_delete=models.PROTECT, verbose_name='Сакральны аб\'ект')
+    sacral_objects = models.ManyToManyField(Stones, verbose_name='Сакральны аб\'ект')
+    def __str__(self):
+        return self.work
 
     class Meta:
         verbose_name_plural = 'Узгадкі'
@@ -36,4 +43,4 @@ class Mentions(models.Model):
         ordering = ['author']
         unique_together = ('author', 'work')
 
-'''
+
