@@ -1,9 +1,5 @@
 from django.db import models
 
-def run_shell(use_plain=False):
-    from django.db.models.loading import get_models
-    loaded_models = get_models()
-
 class Stones(models.Model):
     title = models.CharField(max_length=30, verbose_name='Назва')
     place = models.TextField(verbose_name='Месцазнаходжанне')
@@ -33,7 +29,7 @@ class Typ(models.Model):
 class Mentions(models.Model):
     author = models.CharField(max_length=50, verbose_name='Аўтар')
     work = models.TextField(verbose_name='Праца')
-    sacral_objects = models.ManyToManyField(Stones, verbose_name='Сакральны аб\'ект')
+    sacral_objects = models.ManyToManyField(Stones, related_name='mentions', verbose_name='Сакральны аб\'ект')
     def __str__(self):
         return self.work
 

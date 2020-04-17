@@ -6,7 +6,7 @@ class StonesAdmin(admin.ModelAdmin):
     list_display = ('title', 'legend', 'place', 'typ')
     list_display_links = ('title', 'legend', 'place')
     search_fields = ('title', 'legend', 'place'
-                     #, 'work', 'author'
+                     , 'mentions__work', 'mentions__author'
                      )
 
 admin.site.register(Stones, StonesAdmin)
