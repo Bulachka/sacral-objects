@@ -27,7 +27,6 @@ class Typ(models.Model):
 
 
 class Mentions(models.Model):
-    author = models.CharField(max_length=50, verbose_name='Аўтар')
     work = models.TextField(verbose_name='Праца')
     sacral_objects = models.ManyToManyField(Stones, related_name='mentions', verbose_name='Сакральны аб\'ект')
     def __str__(self):
@@ -36,7 +35,17 @@ class Mentions(models.Model):
     class Meta:
         verbose_name_plural = 'Узгадкі'
         verbose_name = 'Узгадка'
-        ordering = ['author']
-        unique_together = ('author', 'work')
+        ordering = ['work']
 
+
+class Authors(models.Model):
+    author = models.CharField(max_length=50, verbose_name='Аўтар')
+    publications = models.ManyToManyField(Mentions, related_name='authors', verbose_name='Аўтары')
+    def __str__(self):
+        return self.author
+
+    class Meta:
+        verbose_name_plural = 'Аўтары'
+        verbose_name = 'Аўтар'
+        ordering = ['author']
 

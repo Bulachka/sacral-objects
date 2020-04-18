@@ -11,5 +11,5 @@ urlpatterns = [
     path('stone_details/<int:pk>/', stone_detail, name='stone_detail'),
     path('mentions/', bibliography, name='bibliography'),
     path('works/<int:pk>/', work_detail, name='work_detail'),
-    path('author/', author_detail, name='author_detail'),
+    path('authors/<int:pk>/', author_detail, name='author_detail'),
 ]
