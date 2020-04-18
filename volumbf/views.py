@@ -37,7 +37,7 @@ def stone_detail(request, pk):
     typs = Typ.objects.all()
     return render(request, 'volumbf/stone_detail.html', {'stones': stones, 'typs': typs})
 
-"""
+
 def bibliography(request):
     works = Mentions.objects.all()
     return render(request, 'volumbf/bibliography.html', {'works': works})
@@ -51,4 +51,4 @@ def author_detail(request, author):
     author = get_object_or_404(Mentions, author=author)
     works = Mentions.objects.all()
     return render(request, 'volumbf/author_detail.html', {'works': works, 'author': author})  
-"""
+

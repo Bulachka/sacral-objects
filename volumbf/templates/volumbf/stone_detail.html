@@ -6,6 +6,6 @@
 	<p>{{ stones.legend }} </p>
 	<p>{{ stones.place }}</p>
 	<p><a href="/volumbf/{{ stones.typ.pk }}/"><p>{{ stones.typ.name }}</p>
-	{# !-- <p><a href="{% url 'work_detail' mentions.pk %}">{{ mentions.author }}{{ mentions.work }}</p> -->#}
+	<p><a href="{% url 'work_detail' mentions.pk %}">{{ mentions.author }}{{ mentions.work }}</p>
    </div>
 {% endblock %}

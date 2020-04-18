@@ -1,9 +1,11 @@
 {% extends "layout/basic.html" %}
 
 {% block content %}
+<h2>Bibliography</h2>
+{% for work in works #}
    <div>
-	<h2> {{ stones.title}} </h2>
-	<p>{{ stones.legend }} </p>
-	<p>{{ stones.place }}</p>
+	<h2><a href="{% url 'work_detail' mentions.pk %}">{{ mentions.work }}</a></h2>
+	<p><a href="{% url 'author_detail' mentions.author %}">{{ mentions.author }}</a></p>
    </div>
+{% endfor %}
 {% endblock %}
