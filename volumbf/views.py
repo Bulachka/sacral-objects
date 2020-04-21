@@ -35,22 +35,22 @@ class StonesCreateView(CreateView):
 def stone_detail(request, pk):
     stones = get_object_or_404(Stones, pk=pk)
     typs = Typ.objects.all()
-    works = Mentions.objects.all()
+    works = Mentions.objects.filter(sacral_objects__in=[stones])
     return render(request, 'volumbf/stone_detail.html', {'stones': stones, 'typs': typs, 'works': works})
 
 
 def bibliography(request):
     works = Mentions.objects.all()
-    authors = Authors.objects.all()
+    authors = Authors.objects.filter(publications__in=[works])
     return render(request, 'volumbf/bibliography.html', {'works': works, 'authors': authors})
 
-def work_detail(request, pk): #я акурат чытала, што поле айдзішнікаў не трэба яўна аб'яўляць, яно ствараецца аўтаматычна
-    work = get_object_or_404(Mentions, pk=pk)
-    authors = Authors.objects.all()
-    return render(request, 'volumbf/work_detail.html', {'work': work, 'authors': authors})
+def work_detail(request, pk):
+    works = get_object_or_404(Mentions, pk=pk)
+    authors = Authors.objects.filter(publications__in=[works])
+    return render(request, 'volumbf/work_detail.html', {'works': works, 'authors': authors})
 
 def author_detail(request, pk): 
-    author = get_object_or_404(Authors, pk=pk)
-    works = Mentions.objects.all()
-    return render(request, 'volumbf/author_detail.html', {'works': works, 'author': author})  
+    authors = get_object_or_404(Authors, pk=pk)
+    works = Mentions.objects.filter(authors__in=[authors]) #Choices are: authors, id, sacral_objects, work
+    return render(request, 'volumbf/author_detail.html', {'works': works, 'authors': authors})  
 
