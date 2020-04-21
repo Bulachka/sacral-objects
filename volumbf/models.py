@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
 class Stones(models.Model):
     title = models.CharField(max_length=30, verbose_name='Назва')
@@ -7,6 +8,13 @@ class Stones(models.Model):
     typ = models.ForeignKey('Typ', null=True, on_delete=models.PROTECT, verbose_name='Тып')
     def __str__(self):
         return self.title
+
+    def clean(self):
+        errors = {}
+        if not self.legend:
+            errors['legend'] = ValidationError('Дадайце легенду')
+        if errors:
+            raise ValidationError(errors)
 
     class Meta:
         verbose_name_plural = 'Камяні'
@@ -28,6 +36,7 @@ class Typ(models.Model):
 
 class Mentions(models.Model):
     work = models.TextField(verbose_name='Праца')
+    year = models.PositiveIntegerField(blank=True, null=True)
     sacral_objects = models.ManyToManyField(Stones, related_name='mentions', verbose_name='Сакральны аб\'ект')
     def __str__(self):
         return self.work

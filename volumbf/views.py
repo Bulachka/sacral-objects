@@ -39,10 +39,11 @@ def stone_detail(request, pk):
     return render(request, 'volumbf/stone_detail.html', {'stones': stones, 'typs': typs, 'works': works})
 
 
-def bibliography(request):
+def bibliography(request): 
     works = Mentions.objects.all()
-    authors = Authors.objects.filter(publications__in=[works])
-    return render(request, 'volumbf/bibliography.html', {'works': works, 'authors': authors})
+    for work in works:
+        work.writers = Authors.objects.filter(publications__in=[work])
+    return render(request, 'volumbf/bibliography.html', {'works': works, 'work.writers': work.writers})
 
 def work_detail(request, pk):
     works = get_object_or_404(Mentions, pk=pk)

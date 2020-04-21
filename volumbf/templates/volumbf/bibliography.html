@@ -5,8 +5,8 @@
 {% for work in works %}
 	<div>
 		<h2><a href="{% url 'work_detail' work.pk %}">{{ work }}</a></h2>
-		{% for author in authors %}
-    			<p><a href="{% url 'author_detail' author.pk %}">{{ author }}</a></p>
+		{% for writer in work.writers %}
+   			<p><a href="{% url 'author_detail' writer.pk %}">{{ writer }}</a></p>
 		{% endfor %}
    	</div>	
 {% endfor %}
