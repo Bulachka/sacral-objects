@@ -10,9 +10,9 @@ class StonesForm(ModelForm):
 class MentionsForm(ModelForm):
     class Meta:
         model = Mentions
-        fields = ('work', 'year')
+        fields = ('work', 'year', 'sacral_objects')
 
 class AuthorsForm(ModelForm):
     class Meta:
         model = Authors
-        fields = ('author', )
+        fields = ('author', 'publications')

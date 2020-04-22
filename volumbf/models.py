@@ -49,7 +49,7 @@ class Mentions(models.Model):
 
 class Authors(models.Model):
     author = models.CharField(max_length=50, verbose_name='Аўтар')
-    publications = models.ManyToManyField(Mentions, related_name='authors', verbose_name='Аўтары')
+    publications = models.ManyToManyField(Mentions, related_name='authors', verbose_name='Публікацыі')
     def __str__(self):
         return self.author
 
