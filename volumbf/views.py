@@ -18,7 +18,7 @@ def by_typ(request, typ_id):
 
 from django.views.generic.edit import CreateView
 
-from .forms import StonesForm
+from .forms import StonesForm, MentionsForm, AuthorsForm
 from django.urls import reverse_lazy
 
 class StonesCreateView(CreateView):
@@ -31,6 +31,15 @@ class StonesCreateView(CreateView):
         context['typs'] = Typ.objects.all()
         return context
 
+class MentionsCreateView(CreateView):
+    template_name = 'volumbf/createMentions.html'
+    form_class = MentionsForm
+    success_url = reverse_lazy('index')
+
+class AuthorsCreateView(CreateView):
+    template_name = 'volumbf/createAuthors.html'
+    form_class = AuthorsForm
+    success_url = reverse_lazy('index')
 
 def stone_detail(request, pk):
     stones = get_object_or_404(Stones, pk=pk)

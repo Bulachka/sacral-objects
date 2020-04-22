@@ -20,6 +20,8 @@
 			<a href="{% url 'by_typ' typ.pk %}">{{ typ.name }}</a>
 			{% endfor %}
 			<a href="{% url 'bibliography' %}">Bibliography</a>
+			<a href="{% url 'addPublication' %}">Add publication</a>
+			<a href="{% url 'addAuthor' %}">Add author</a>
 		</nav>
 		<section>
 		{% block content %}
