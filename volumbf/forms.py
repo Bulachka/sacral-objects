@@ -15,4 +15,4 @@ class MentionsForm(ModelForm):
 class AuthorsForm(ModelForm):
     class Meta:
         model = Authors
-        fields = ('author',)
+        fields = ('author', )
