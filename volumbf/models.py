@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 
+
 class Stones(models.Model):
     title = models.CharField(max_length=30, verbose_name='Назва')
     place = models.TextField(verbose_name='Месцазнаходжанне')
@@ -46,10 +47,18 @@ class Mentions(models.Model):
         verbose_name = 'Узгадка'
         ordering = ['work']
 
+class AuthorManager(models.Manager):
+    def all_with_prefetch_movies_and_mentions(self):
+        qs = self.get_queryset()
+        return qs.prefetch_related(
+            'directed_by', 'publications__authors', 'role_set__movie'
+        )
 
 class Authors(models.Model):
     author = models.CharField(max_length=50, verbose_name='Аўтар')
-    publications = models.ManyToManyField(Mentions, related_name='authors', verbose_name='Публікацыі')
+    publications = models.ManyToManyField(Mentions, related_name='authors', verbose_name='Публікацыі', blank=True)
+    objects = AuthorManager()
+
     def __str__(self):
         return self.author
 

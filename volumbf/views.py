@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-
+from django.views.generic import (ListView, DetailView,)
 
 from .models import Stones, Typ, Mentions, Authors
 
@@ -59,8 +59,14 @@ def work_detail(request, pk):
     authors = Authors.objects.filter(publications__in=[works])
     return render(request, 'volumbf/work_detail.html', {'works': works, 'authors': authors})
 
+"""
 def author_detail(request, pk): 
     authors = get_object_or_404(Authors, pk=pk)
     works = Mentions.objects.filter(authors__in=[authors]) #Choices are: authors, id, sacral_objects, work
     return render(request, 'volumbf/author_detail.html', {'works': works, 'authors': authors})  
+    
+    """
+class AuthorDetail(DetailView):
+    queryset = Authors.objects.all_with_prefetch_movies_and_mentions()
+
 

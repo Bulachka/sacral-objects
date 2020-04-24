@@ -6,7 +6,7 @@
 	<p>Year: {{ works.year }}</p>
 	<p>Author: </p>
 	{% for author in authors %}
-    		<p><a href="{% url 'author_detail' author.pk %}">{{ author }}</a></p>
+    		<p><a href="{% url 'authors_detail' author.pk %}">{{ author }}</a></p>
 	{% endfor %}
    </div>
 {% endblock %}

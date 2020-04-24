@@ -6,7 +6,7 @@
 	<div>
 		<h2><a href="{% url 'work_detail' work.pk %}">{{ work }}</a></h2>
 		{% for writer in work.writers %}
-   			<p><a href="{% url 'author_detail' writer.pk %}">{{ writer }}</a></p>
+   			<p><a href="{% url 'authors_detail' writer.pk %}">{{ writer }}</a></p>
 		{% endfor %}
    	</div>	
 {% endfor %}
