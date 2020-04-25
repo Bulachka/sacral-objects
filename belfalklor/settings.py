@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['127.0.0.1', 'avalodzina.pythonanywhere.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'user',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -100,6 +101,9 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+LOGIN_REDIRECT_URL = 'movie:MovieList'
 
 
 # Internationalization

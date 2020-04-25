@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 
 import movie.urls
+import user.urls
 
 urlpatterns = [
     path('volumbf/', include('volumbf.urls')),
     path('admin/', admin.site.urls),
     path('', include('volumbf.urls')),
     path('', include(movie.urls, namespace='movie')),
+    path('user/', include(user.urls, namespace='user')),
 ]
