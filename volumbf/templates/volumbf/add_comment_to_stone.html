@@ -4,10 +4,10 @@
 
 {% block content %}
 <hl>New comment</hl>
-<form method="post">
+<form method="post" class="post-form">
 	{% csrf_token %}
 	{{ form.as_p }}
-	<input type="submit" value="Add">
+	<button type="submit" class="save btn btn-default">Send</button>
 </form>
 {% endblock %}
 

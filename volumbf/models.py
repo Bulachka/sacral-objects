@@ -74,7 +74,7 @@ class Authors(models.Model):
 
 
 class Comment(models.Model):
-    stone = models.ForeignKey(Stones, on_delete=models.CASCADE, related_name='comment')
+    stones = models.ForeignKey(Stones, on_delete=models.CASCADE, related_name='comment')
     commentator = models.CharField(max_length=200)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
