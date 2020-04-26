@@ -11,7 +11,19 @@ class MovieList(ListView):
     model = Movie
 
 
-def movie_new(request, pk):
+def movie_new(request):
+    if request.method == "POST":
+        form = MovieForm(request.POST)
+        if form.is_valid():
+            post = form.save()
+            post.save()
+            return redirect('movie:MovieList')
+    else:
+        form = MovieForm()
+    return render(request, 'movie_new', {'form': form})
+
+
+def movie_edit(request, pk):
     post = get_object_or_404(Movie, pk=pk)
     if request.method == "POST":
         form = MovieForm(request.POST, instance=post)
