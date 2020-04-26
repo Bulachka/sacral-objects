@@ -3,10 +3,12 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta http-equiv="Content-Type"
-		content="text/html; charset=utf-8">
-		<link rel="stylesheet" type="text/css"
-		href="{% static 'volumbf/style.css' %}">
+		<meta http-equiv="Content-Type"	content="text/html; charset=utf-8">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="{% static 'volumbf/style.css' %}">
 		<title>{% block title %}Main{% endblock %} - Sacral objects</title>
 	</head>
 	<body>
@@ -23,6 +25,8 @@
 			<a href="{% url 'addPublication' %}">Add publication</a>
 			<a href="{% url 'addAuthor' %}">Add author</a>
 			<a href="/movies/">Movies</a>
+            <a href="{% url 'movie:movie_new' %}">Add movie</a>
+
 		</nav>
 		<section>
 		{% block content %}

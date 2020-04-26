@@ -1,9 +1,16 @@
-"""
 from django import forms
-from django.contrib.auth import get_user_model
+# from django.contrib.auth import get_user_model
 
-from .models import Movie, Vote
+from .models import Movie
 
+
+class MovieForm(forms.ModelForm):
+
+    class Meta:
+        model = Movie
+        fields = ('title', 'plot', 'year', 'rating', 'director', 'creators', 'website')
+
+"""
 class VoteForm(forms.ModelForm):
     user = forms.ModelChoiceField(
         widget=forms.HiddenInput,

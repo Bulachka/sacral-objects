@@ -3,8 +3,6 @@ header h1 {
 	text-transform: uppercase;
 	text-align: center;
 	background: url("bg.jpg") left / auto 100% no-repeat;
-	color: #FCA205;
-	font-family: 'Lobster';
 }
 nav {
 	front-size: 16pt;

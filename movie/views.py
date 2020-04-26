@@ -1,13 +1,27 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.views.generic import (ListView, DetailView,)
 
-#from movie.forms import VoteForm
-from movie.models import Movie #Vote
+from .forms import MovieForm
+    #VoteForm
+from .models import Movie #Vote
 
 
 class MovieList(ListView):
     model = Movie
+
+
+def movie_new(request, pk):
+    post = get_object_or_404(Movie, pk=pk)
+    if request.method == "POST":
+        form = MovieForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save()
+            post.save()
+            return redirect('movie:MovieList')
+    else:
+        form = MovieForm(instance=post)
+    return render(request, 'movie_new', {'form': form})
 
 
 class MovieDetail(DetailView):

@@ -14,4 +14,5 @@ urlpatterns = [
     path('authors/<int:pk>/', AuthorDetail.as_view(), name='authors_detail'),
     path('addPublication/', MentionsCreateView.as_view(), name='addPublication'),
     path('addAuthor/', AuthorsCreateView.as_view(), name='addAuthor'),
+
 ]
