@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.utils import timezone
 
 
 class Stones(models.Model):
@@ -23,6 +24,10 @@ class Stones(models.Model):
         #ordering = ['title']
         order_with_respect_to = 'typ'
         unique_together = ('title', 'place')
+
+    def approved_comment(self):
+        return self.comment.filter(approved_comment=True)
+
 
 class Typ(models.Model):
     name = models.CharField(max_length=20, db_index=True, verbose_name='Назва тыпу')
@@ -66,4 +71,25 @@ class Authors(models.Model):
         verbose_name_plural = 'Аўтары'
         verbose_name = 'Аўтар'
         ordering = ['author']
+
+
+class Comment(models.Model):
+    stone = models.ForeignKey(Stones, on_delete=models.CASCADE, related_name='comment')
+    commentator = models.CharField(max_length=200)
+    text = models.TextField()
+    created_date = models.DateTimeField(default=timezone.now)
+    approved_comment = models.BooleanField(default=False)
+
+    def approve(self):
+        self.approved_comment = True
+        self.save()
+
+    def __str__(self):
+        return self.text
+
+    class Meta:
+        verbose_name_plural = 'Каментары'
+        verbose_name = 'Каментар'
+        ordering = ['-created_date']
+
 

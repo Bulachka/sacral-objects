@@ -1,7 +1,7 @@
 from django.urls import path
 
-from .views import index, by_typ, stone_detail, bibliography, work_detail, AuthorDetail
-    #author_detail
+from .views import index, by_typ, stone_detail, bibliography, work_detail, AuthorDetail, add_comment_to_stone
+#author_detail
 from .views import StonesCreateView, MentionsCreateView, AuthorsCreateView
 
 urlpatterns = [
@@ -14,5 +14,6 @@ urlpatterns = [
     path('authors/<int:pk>/', AuthorDetail.as_view(), name='authors_detail'),
     path('addPublication/', MentionsCreateView.as_view(), name='addPublication'),
     path('addAuthor/', AuthorsCreateView.as_view(), name='addAuthor'),
+    path('stone/<int:pk>/comment/', add_comment_to_stone, name='add_comment_to_stone'),
 
 ]

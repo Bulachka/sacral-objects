@@ -1,13 +1,19 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import (ListView, DetailView,)
+from django.urls import reverse_lazy
 
-from .models import Stones, Typ, Mentions, Authors
+from django.views.generic import (ListView, DetailView,)
+from django.views.generic.edit import CreateView
+
+from .models import Stones, Typ, Mentions, Authors, Comment
+from .forms import StonesForm, MentionsForm, AuthorsForm, CommentForm
+
 
 def index(request):
     stst = Stones.objects.all
     typs = Typ.objects.all()
     context = {'stst': stst, 'typs': typs}
     return render(request, 'volumbf/index.html', context)
+
 
 def by_typ(request, typ_id):
     stst = Stones.objects.filter(typ=typ_id)
@@ -16,10 +22,6 @@ def by_typ(request, typ_id):
     context = {'stst': stst, 'typs': typs, 'current_typ': current_typ}
     return render(request, 'volumbf/by_typ.html', context)
 
-from django.views.generic.edit import CreateView
-
-from .forms import StonesForm, MentionsForm, AuthorsForm
-from django.urls import reverse_lazy
 
 class StonesCreateView(CreateView):
     template_name = 'volumbf/create.html'
@@ -31,15 +33,18 @@ class StonesCreateView(CreateView):
         context['typs'] = Typ.objects.all()
         return context
 
+
 class MentionsCreateView(CreateView):
     template_name = 'volumbf/createMentions.html'
     form_class = MentionsForm
     success_url = reverse_lazy('index')
 
+
 class AuthorsCreateView(CreateView):
     template_name = 'volumbf/createAuthors.html'
     form_class = AuthorsForm
     success_url = reverse_lazy('index')
+
 
 def stone_detail(request, pk):
     stones = get_object_or_404(Stones, pk=pk)
@@ -53,6 +58,7 @@ def bibliography(request):
     for work in works:
         work.writers = Authors.objects.filter(publications__in=[work])
     return render(request, 'volumbf/bibliography.html', {'works': works, 'work.writers': work.writers})
+
 
 def work_detail(request, pk):
     works = get_object_or_404(Mentions, pk=pk)
@@ -69,4 +75,17 @@ def author_detail(request, pk):
 class AuthorDetail(DetailView):
     queryset = Authors.objects.all_with_prefetch_movies_and_mentions()
 
+
+def add_comment_to_stone(request, pk):
+    stones = get_object_or_404(Stones, pk=pk)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.stones = stones
+            comment.save()
+            return redirect('stone_detail', pk=stones.pk)
+    else:
+        form = CommentForm()
+    return render(request, 'volumbf/add_comment_to_stone.html', {'form': form})
 

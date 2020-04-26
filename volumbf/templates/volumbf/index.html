@@ -7,6 +7,7 @@
 	<p><a href="/volumbf/{{ stones.typ.pk }}/">{{ stones.typ.name }}</a></p>
 	<p>{{ stones.legend }} </p>
 	<p>{{ stones.place }}</p>
+    <p><a href="{% url 'stone_detail' stones.pk %}">Comments: {{ stones.approved_comment.count }}</a></p>
 </div>
 {% endfor %}
 {% endblock %}	

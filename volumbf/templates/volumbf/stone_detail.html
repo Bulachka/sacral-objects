@@ -10,5 +10,17 @@
 	{% for work in works %}
     		<p><a href="{% url 'work_detail' work.pk %}"> {{ work }}</a></p>
 	{% endfor %}
-   </div>
+   <a class="btn btn-default" href="{% url 'add_comment_to_stone' pk=stones.pk %}">Add comment</a>
+      </div>
+{% for comment in stones.comment.all %}
+    {% if comment.approved_comment %}
+    <div class="comment">
+        <div class="date">{{ comment.created_date }}</div>
+        <strong>{{ comment.commentator }}</strong>
+        <p>{{ comment.text|linebreaks }}</p>
+    </div>
+    {% endif %}
+ {% empty %}
+    <p>test</p>
+{%  endfor %}
 {% endblock %}
