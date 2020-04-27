@@ -84,7 +84,7 @@ def add_comment_to_stone(request, pk):
             comment = form.save(commit=False)
             comment.stones = stones
             comment.save()
-            return redirect('stone_detail', pk=stones.pk)
+            return render(request, 'volumbf/stone_detail_redirect.html', {'stones':stones})
     else:
         form = CommentForm()
     return render(request, 'volumbf/add_comment_to_stone.html', {'form': form})

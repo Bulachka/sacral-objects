@@ -1,0 +1,8 @@
+{% extends "layout/basic.html" %}
+
+{% block content %}
+   <div>
+	<h2> Your comment is on moderation, thank you for leaving it! </h2>
+	<p><a href="{% url 'stone_detail' stones.pk %}">Back to the sacral object</a></p>
+   </div>
+{% endblock %}
