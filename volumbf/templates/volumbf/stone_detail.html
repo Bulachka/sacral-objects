@@ -7,11 +7,31 @@
 	<p>{{ stones.place }}</p>
 	<p>Typ: <a href="/volumbf/{{ stones.typ.pk }}/">{{ stones.typ.name }}</a></p>
 	<p>Mentions: </p>
-	{% for work in works %}
-    		<p><a href="{% url 'work_detail' work.pk %}"> {{ work }}</a></p>
+	{% for work in stones.mentions.all %}
+        <p><a href="{% url 'work_detail' work.pk %}"> {{ stones.mentions }}</a></p>
 	{% endfor %}
+   <ul class="stone-image list-inline" >
+        {% for i in object.stonesimage_set.all %}
+            <li class="list-inline-item" >
+                <img scr="{{ i.image.url }}">
+            </li>
+        {% endfor %}
+    </ul>
+    {% if image_form %}
+        <div>
+            <h2 >Upload New Image</h2>
+        <form method="post"
+              enctype="multipart/form-data"
+              action="{% url 'StonesImageUpload' stones_id=object_id %}" >
+            {% csrf_token %}
+            {{ image_form.as_p }}
+            <p ><button class="btn btn-primary"></button> </p>
+        </form>
+        </div>
+    {% endif %}
    <a class="btn btn-default" href="{% url 'add_comment_to_stone' pk=stones.pk %}">Add comment</a>
       </div>
+
 {% for comment in stones.comment.all %}
     {% if comment.approved_comment %}
     <div class="comment">

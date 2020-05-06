@@ -9,7 +9,7 @@
             {% for publication in object.publications.all %}
                 <li >
                      {{ publication }}
-                {# <a href="{% url 'work_detail' publications__authors.id %}"> {{ publication }}</a> #}
+                   {#   <a href="{% url 'work_detail' work.pk %}"> {{ publication }}</a> #}
                 </li>
             {% endfor %}
         </ul>
@@ -24,11 +24,12 @@
         </ul>
     <h2>Director</h2>
         <ul >
-             {# {% for movie in object.directed_by.all %} #}
+              {% for movie in object.directed_by.all %}
                 <li >
-                 {#    <a href="{% url 'movie:MovieDetail' movie.id %}"> {{ movie }}</a> #}
+                <p2>test</p2>
+                 <a href="{% url 'movie:MovieDetail' movie.id %}"> {{ authors.directed_by }}</a>
                 </li>
-           {# {% endfor %}  #}
+              {% endfor %}
         </ul>
 
 {% endblock %}
