@@ -1,11 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
+from django.contrib.auth.mixins import (LoginRequiredMixin)
 
-from django.views.generic import (ListView, DetailView,)
+from django.views import generic
+from django.views.generic import (ListView, DetailView, )
 from django.views.generic.edit import CreateView
 
 from .models import Stones, Typ, Mentions, Authors, Comment
-from .forms import StonesForm, MentionsForm, AuthorsForm, CommentForm
+from movie.models import Movie
+from .forms import StonesForm, MentionsForm, AuthorsForm, CommentForm, StonesImageForm
 
 
 def index(request):
@@ -46,14 +49,51 @@ class AuthorsCreateView(CreateView):
     success_url = reverse_lazy('index')
 
 
+"""
 def stone_detail(request, pk):
     stones = get_object_or_404(Stones, pk=pk)
-    typs = Typ.objects.all()
-    works = Mentions.objects.filter(sacral_objects__in=[stones])
+    typs = Typ.objects.all() #мадэль Typ звязана са Stones праз ForeignKey
+    works = Mentions.objects.filter(sacral_objects__in=[stones]) #мадэль Mentions звязана са Stones праз ManyToMany
     return render(request, 'volumbf/stone_detail.html', {'stones': stones, 'typs': typs, 'works': works})
+"""
 
 
-def bibliography(request): 
+class StonesDetail(generic.DetailView):
+    queryset = Stones.objects.all_with_prefetch_mentions()
+    template_name = 'volumbf/stone_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['image_form'] = self.stones_image_form()
+        return context
+
+    def stones_image_form(self):
+        if self.request.user.is_authenticated:
+            return StonesImageForm()
+        return None
+
+
+class StonesImageUpload(LoginRequiredMixin, CreateView):
+    form_class = StonesImageForm
+
+    def get_initial(self):
+        initial = super().get_initial()
+        initial['user'] = self.request.user.id
+        initial['stones'] = self.kwargs['stones_id']
+        return initial
+
+    def render_to_response(self, context, **response_kwargs):
+        stones_id = self.kwargs['stones_id']
+        stones_detail_url = reverse('stone_detail', kwargs={'pk': stones_id})
+        return redirect(to=stones_detail_url)
+
+    def get_success_url(self):
+        stones_id = self.kwargs['stones_id']
+        stones_detail_url = reverse('stone_detail', kwargs={'pk': stones_id})
+        return stones_detail_url
+
+
+def bibliography(request):
     works = Mentions.objects.all()
     for work in works:
         work.writers = Authors.objects.filter(publications__in=[work])
@@ -65,13 +105,18 @@ def work_detail(request, pk):
     authors = Authors.objects.filter(publications__in=[works])
     return render(request, 'volumbf/work_detail.html', {'works': works, 'authors': authors})
 
+
 """
-def author_detail(request, pk): 
+def author_detail(request, pk):
     authors = get_object_or_404(Authors, pk=pk)
-    works = Mentions.objects.filter(authors__in=[authors]) #Choices are: authors, id, sacral_objects, work
-    return render(request, 'volumbf/author_detail.html', {'works': works, 'authors': authors})  
-    
+    works = Mentions.objects.filter(authors__in=[authors])  # Choices are: authors, id, sacral_objects, work
+    movies = Movie.objects.filter(director__in=[authors], creators__in=[authors])
+    context = {'works': works, 'authors': authors, 'movies': movies}
+    return render(request, 'volumbf/authors_detail.html', context)
+
     """
+
+
 class AuthorDetail(DetailView):
     queryset = Authors.objects.all_with_prefetch_movies_and_mentions()
 
@@ -84,8 +129,7 @@ def add_comment_to_stone(request, pk):
             comment = form.save(commit=False)
             comment.stones = stones
             comment.save()
-            return render(request, 'volumbf/stone_detail_redirect.html', {'stones':stones})
+            return render(request, 'volumbf/stone_detail_redirect.html', {'stones': stones})
     else:
         form = CommentForm()
     return render(request, 'volumbf/add_comment_to_stone.html', {'form': form})
-

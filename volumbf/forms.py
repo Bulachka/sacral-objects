@@ -1,6 +1,7 @@
+from django.contrib.auth import get_user_model
 from django.forms import ModelForm
-
-from .models import Stones, Mentions, Authors, Comment
+from django import forms
+from .models import Stones, Mentions, Authors, Comment, StonesImage
 
 
 class StonesForm(ModelForm):
@@ -25,3 +26,19 @@ class CommentForm(ModelForm):
     class Meta:
         model = Comment
         fields = ('commentator', 'text')
+
+
+class StonesImageForm(ModelForm):
+    stones = forms.ModelChoiceField(
+        widget=forms.HiddenInput,
+        queryset=Stones.objects.all(),
+        disabled=True
+    )
+    user = forms.ModelChoiceField(
+        widget=forms.HiddenInput,
+        queryset=get_user_model().objects.all(),
+        disabled=True
+    )
+    class Meta:
+        model = StonesImage
+        fields = ('image', 'user', 'stones')

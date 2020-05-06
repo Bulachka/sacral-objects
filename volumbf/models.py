@@ -1,6 +1,18 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.utils import timezone
+from django.conf import settings
+from uuid import uuid4
+
+
+def stones_directory_path_with_uuid(instance, filename):
+    return '{}/{}'.format(instance.stones_id, uuid4())
+
+
+class StonesManager(models.Manager):
+    def all_with_prefetch_mentions(self):
+        qs = self.get_queryset()
+        return qs.prefetch_related('mentions')
 
 
 class Stones(models.Model):
@@ -8,6 +20,7 @@ class Stones(models.Model):
     place = models.TextField(verbose_name='Месцазнаходжанне')
     legend = models.TextField(null=True, blank=True, verbose_name='Легенда')
     typ = models.ForeignKey('Typ', null=True, on_delete=models.PROTECT, verbose_name='Тып')
+    objects = StonesManager()
     def __str__(self):
         return self.title
 
@@ -38,6 +51,13 @@ class Typ(models.Model):
         verbose_name_plural = 'Тыпы'
         verbose_name = 'Тып'
         ordering = ['name']
+
+
+class StonesImage(models.Model):
+    image = models.ImageField(upload_to=stones_directory_path_with_uuid)
+    uploaded = models.DateTimeField(auto_now_add=True)
+    stones = models.ForeignKey('Stones', on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 
 class Mentions(models.Model):
