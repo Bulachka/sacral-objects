@@ -25,8 +25,7 @@
         <ul >
               {% for movie in object.directed_by.all %}
                 <li >
-                <p2>test</p2>
-                 <a href="{% url 'movie:MovieDetail' movie.id %}"> {{ authors.directed_by }}</a>
+                <a href="{% url 'movie:MovieDetail' movie.id %}"> {{ movie.title }}</a>
                 </li>
               {% endfor %}
         </ul>
