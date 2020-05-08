@@ -72,6 +72,7 @@ class Mentions(models.Model):
         verbose_name = 'Узгадка'
         ordering = ['work']
 
+
 class AuthorManager(models.Manager):
     def all_with_prefetch_movies_and_mentions(self):
         qs = self.get_queryset()

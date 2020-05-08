@@ -5,7 +5,7 @@ from django.db.models.aggregates import (Sum)
 
 class MovieManager(models.Manager):
 
-    def all_with_related_authors(self):
+    def all_with_prefetch_authors(self):
         qs = self.get_queryset()
         qs = qs.prefetch_related(
             'director', 'creators')

@@ -37,7 +37,7 @@ def movie_edit(request, pk):
 
 
 class MovieDetail(DetailView):
-    queryset = (Movie.objects.all_with_related_authors())
+    queryset = Movie.objects.all_with_prefetch_authors()
 """
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)

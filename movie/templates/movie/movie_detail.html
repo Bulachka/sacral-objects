@@ -4,22 +4,26 @@
 
 {% block content %}
     <h1>{{ object }}</h1>
-    <p class="lead">
-    {{ object.plot }}
-    </p>
     {% if user.is_authenticated %}
-         <a class="btn btn-default" href="{% url 'movie:movie_new' pk=movie.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+         <a class="btn btn-default" href="{% url 'movie:movie_new' pk=movie.pk %}">
+             <span class="glyphicon glyphicon-pencil"></span></a>
     {% endif %}
- {#  <p>{{ object.director }}</p>#}
-   {# <p>{{ object.creators }}</p>#}
+    <p class="lead">{{ object.plot }}</p>
+    <p>Director: <a href="{% url 'authors_detail' object.id %}"> {{ object.director }}</a></p>
+     <ul >
+        Creators:
+            {% for role in object.creators.all %}
+                <li >
+                    <a href="{% url 'authors_detail' object.id %}"> {{ role.creators }}</a>: {{ role.participation }}
+                </li>
+            {% endfor %}
+     </ul>
   {% endblock %}
 
 {% block sidebar %}
     {# rating div omitted #}
     <div>
-    This movie is rated:
-        <span class="badge-primary">
-            {{  object.get_rating_display }}
-        </span>
+    Typ of the film:
+        <span class="badge-primary">{{  object.get_rating_display }}</span>
     </div>
 {% endblock %}

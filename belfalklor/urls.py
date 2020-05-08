@@ -24,7 +24,6 @@ import user.urls
 MEDIA_FILE_PATHS = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns = [
-    path('volumbf/', include('volumbf.urls')),
     path('admin/', admin.site.urls),
     path('', include('volumbf.urls')),
     path('', include(movie.urls, namespace='movie')),
