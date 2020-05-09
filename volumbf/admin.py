@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Mentions, Stones, Typ, Authors, Comment
+from .models import Mentions, Stones, Typ, Authors, Comment, StonesImage
 
 class StonesAdmin(admin.ModelAdmin):
     list_display = ('title', 'legend', 'place', 'typ')
@@ -14,3 +14,5 @@ admin.site.register(Typ)
 admin.site.register(Mentions)
 admin.site.register(Authors)
 admin.site.register(Comment)
+admin.site.register(StonesImage)
+
