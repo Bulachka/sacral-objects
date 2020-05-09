@@ -25,7 +25,8 @@ MEDIA_FILE_PATHS = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('user/', include(user.urls, namespace='user')),
     path('', include('volumbf.urls')),
     path('', include(movie.urls, namespace='movie')),
-    path('user/', include(user.urls, namespace='user')),
+
 ] + MEDIA_FILE_PATHS

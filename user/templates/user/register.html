@@ -4,9 +4,8 @@
 
 {% block content %}
 <hl>Registration</hl>
-<form method="post">
+<form method="post">{{ form.as_p }}
 	{% csrf_token %}
-	{{ form.as_p }}
 	<button type="submit" class="btn btn-primary">
         Register
     </button>

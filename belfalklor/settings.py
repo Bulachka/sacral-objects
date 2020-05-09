@@ -103,7 +103,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-LOGIN_REDIRECT_URL = 'movie:MovieList'
+LOGIN_REDIRECT_URL = 'index'
 
 
 # Internationalization

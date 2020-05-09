@@ -14,7 +14,7 @@
         Creators:
             {% for role in object.creators.all %}
                 <li >
-                    <a href="{% url 'authors_detail' object.id %}"> {{ role.creators }}</a>: {{ role.participation }}
+                    <a href="{% url 'authors_detail' object.id %}"> {{ role }}</a>: {{ role.participation }}
                 </li>
             {% endfor %}
      </ul>
