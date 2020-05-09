@@ -13,7 +13,7 @@
    <ul class="stone-image list-inline" >
         {% for i in object.stonesimage_set.all %}
             <li class="list-inline-item" >
-                <img scr="{{ i.image.url }}">
+                <img src="{{ i.image.url }}" alt="{{ i.id }}" >
             </li>
         {% endfor %}
     </ul>
