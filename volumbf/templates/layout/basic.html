@@ -17,16 +17,19 @@
 		</header>
 		<nav>
 			<a href="{% url 'index' %}">Main</a>
-			<a href="{% url 'add' %}">Add</a>
 			{% for typ in typs %}
 			<a href="{% url 'by_typ' typ.pk %}">{{ typ.name }}</a>
 			{% endfor %}
 			<a href="{% url 'bibliography' %}">Bibliography</a>
-			<a href="{% url 'addPublication' %}">Add publication</a>
-			<a href="{% url 'addAuthor' %}">Add author</a>
-			<a href="/movies/">Movies</a>
-            <a href="{% url 'movie:movie_new' %}">Add movie</a>
-
+            <a href="/movies/">Movies</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'add' %}">Add</a>
+                <a href="{% url 'addPublication' %}">Add publication</a>
+			    <a href="{% url 'addAuthor' %}">Add author</a>
+                <a href="{% url 'movie:movie_new' %}">Add movie</a>
+            {% else %}
+                <a href="{% url 'user:login' %}">Log In</a>
+            {% endif %}
 		</nav>
 		<section>
 		{% block content %}
