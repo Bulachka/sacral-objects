@@ -1,4 +1,5 @@
 {% extends "layout/basic.html" %}
+{% load cache %}
 
 {% block content %}
    <div>
@@ -10,13 +11,17 @@
 	{% for work in stones.mentions.all %}
         <p><a href="{% url 'work_detail' work.pk %}"> {{ work }}</a></p>
 	{% endfor %}
+
+   {% cache 300 class="stone-image list-inline" %}
    <ul class="stone-image list-inline" >
         {% for i in object.stonesimage_set.all %}
             <li class="list-inline-item" >
                 <img src="{{ i.image.url }}" alt="{{ i.id }}" >
             </li>
         {% endfor %}
-    </ul>
+   </ul>
+   {% endcache %}
+
     {% if image_form %}
         <div>
             <h2 >Upload New Image</h2>

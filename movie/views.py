@@ -2,8 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.views.generic import (ListView, DetailView,)
 
-from .forms import MovieForm
-    #VoteForm
+from .forms import MovieForm #VoteForm
 from .models import Movie #Vote
 
 

@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import (LoginRequiredMixin)
+from .mixins import (CachePageVaryOnCookieMixin)
 
 from django.views import generic
 from django.views.generic import (ListView, DetailView, )
@@ -58,7 +59,7 @@ def stone_detail(request, pk):
 """
 
 
-class StonesDetail(generic.DetailView):
+class StonesDetail(CachePageVaryOnCookieMixin, generic.DetailView):
     queryset = Stones.objects.all_with_prefetch_mentions()
     template_name = 'volumbf/stone_detail.html'
 
