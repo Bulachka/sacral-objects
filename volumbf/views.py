@@ -59,7 +59,7 @@ def stone_detail(request, pk):
 """
 
 
-class StonesDetail(CachePageVaryOnCookieMixin, generic.DetailView):
+class StonesDetail(generic.DetailView):
     queryset = Stones.objects.all_with_prefetch_mentions()
     template_name = 'volumbf/stone_detail.html'
 
