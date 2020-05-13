@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import index, by_typ,  bibliography, work_detail, AuthorDetail, add_comment_to_stone
+from .views import index, by_typ, bibliography, work_detail, AuthorDetail, add_comment_to_stone, post_share
 #author_detail, stone_detail,
 from .views import StonesCreateView, MentionsCreateView, AuthorsCreateView, StonesDetail, StonesImageUpload
 
@@ -18,5 +18,6 @@ urlpatterns = [
     path('addPublication/', MentionsCreateView.as_view(), name='addPublication'),
     path('addAuthor/', AuthorsCreateView.as_view(), name='addAuthor'),
     path('stone/<int:pk>/comment/', add_comment_to_stone, name='add_comment_to_stone'),
+    path('stone/<int:pk>/share/', post_share, name='post_share'),
 
 ]

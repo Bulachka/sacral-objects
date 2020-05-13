@@ -1,3 +1,4 @@
+from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import (LoginRequiredMixin)
@@ -9,7 +10,8 @@ from django.views.generic.edit import CreateView
 
 from .models import Stones, Typ, Mentions, Authors, Comment
 from movie.models import Movie
-from .forms import StonesForm, MentionsForm, AuthorsForm, CommentForm, StonesImageForm
+from .forms import StonesForm, MentionsForm, AuthorsForm, CommentForm, \
+    StonesImageForm, EmailPostForm
 
 
 def index(request):
@@ -134,3 +136,21 @@ def add_comment_to_stone(request, pk):
     else:
         form = CommentForm()
     return render(request, 'volumbf/add_comment_to_stone.html', {'form': form})
+
+
+def post_share(request, pk):
+    post = get_object_or_404(Stones, pk=pk)
+    sent = False
+    if request.method == 'POST':
+        form = EmailPostForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            post_url = request.build_absolute_uri(post.get_absolute_url())
+            subject = '{} ({}) recommends you reading " {}'.format(cd['name'], cd['email'], post.title)
+            message = 'Read "{}" at {}\n\n{}\'s comments: {}'.format(post.title, post_url, cd['name'], cd['comments'])
+            send_mail(subject, message, 'admin@myblog.com', [cd['to']])
+            sent = True
+        else:
+            form = EmailPostForm()
+            return render(request, 'post_share.html', {'post': post, 'form': form, 'sent': sent})
+    return render(request, 'post_share.html', {'post': post, 'sent': sent})

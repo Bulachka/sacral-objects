@@ -41,6 +41,9 @@ class Stones(models.Model):
     def approved_comment(self):
         return self.comment.filter(approved_comment=True)
 
+    def get_absolute_url(self):
+        return reversed('stone_detail')
+
 
 class Typ(models.Model):
     name = models.CharField(max_length=20, db_index=True, verbose_name='Назва тыпу')
