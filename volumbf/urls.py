@@ -19,5 +19,6 @@ urlpatterns = [
     path('addAuthor/', AuthorsCreateView.as_view(), name='addAuthor'),
     path('stone/<int:pk>/comment/', add_comment_to_stone, name='add_comment_to_stone'),
     path('stone/<int:pk>/share/', post_share, name='post_share'),
+    path('tag/<slug:tag_slug>/', index, name='index_by_tag'),
 
 ]

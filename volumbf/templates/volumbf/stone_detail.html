@@ -3,6 +3,7 @@
 {% block content %}
    <div>
 	<h2> {{ stones.title}} </h2>
+    <p class="tags">Tags: {{ stones.tags.all|join:", " }}</p>
 	<p>{{ stones.legend }} </p>
 	<p>{{ stones.place }}</p>
 	<p>Typ: <a href="/volumbf/{{ stones.typ.pk }}/">{{ stones.typ.name }}</a></p>

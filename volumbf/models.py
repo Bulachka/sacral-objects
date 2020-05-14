@@ -3,6 +3,7 @@ from django.core.exceptions import ValidationError
 from django.utils import timezone
 from django.conf import settings
 from uuid import uuid4
+from taggit.managers import TaggableManager
 
 
 def stones_directory_path_with_uuid(instance, filename):
@@ -20,6 +21,7 @@ class Stones(models.Model):
     place = models.TextField(verbose_name='Месцазнаходжанне')
     legend = models.TextField(null=True, blank=True, verbose_name='Легенда')
     typ = models.ForeignKey('Typ', null=True, on_delete=models.PROTECT, verbose_name='Тып')
+    tags = TaggableManager()
     objects = StonesManager()
     def __str__(self):
         return self.title
@@ -115,5 +117,6 @@ class Comment(models.Model):
         verbose_name_plural = 'Каментары'
         verbose_name = 'Каментар'
         ordering = ['-created_date']
+
 
 

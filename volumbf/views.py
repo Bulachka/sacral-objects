@@ -12,12 +12,17 @@ from .models import Stones, Typ, Mentions, Authors, Comment
 from movie.models import Movie
 from .forms import StonesForm, MentionsForm, AuthorsForm, CommentForm, \
     StonesImageForm, EmailPostForm
+from taggit.models import Tag
 
 
-def index(request):
-    stst = Stones.objects.all
+def index(request, tag_slug=None):
+    stst = Stones.objects.all()
     typs = Typ.objects.all()
-    context = {'stst': stst, 'typs': typs}
+    tag = None
+    if tag_slug:
+        tag = get_object_or_404(Tag, slug=tag_slug)
+        stst = Stones.objects.filter(tags__in=[tag])
+    context = {'stst': stst, 'typs': typs, 'tag': tag}
     return render(request, 'volumbf/index.html', context)
 
 
@@ -153,4 +158,4 @@ def post_share(request, pk):
         else:
             form = EmailPostForm()
             return render(request, 'post_share.html', {'post': post, 'form': form, 'sent': sent})
-    return render(request, 'post_share.html', {'post': post, 'sent': sent})
+    return render(request, 'post_share.html', {'post': post, 'sent': sent})#гэтага радка не было ў прыкладзе
