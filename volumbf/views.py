@@ -7,22 +7,22 @@ from .mixins import (CachePageVaryOnCookieMixin)
 from django.views import generic
 from django.views.generic import (ListView, DetailView, )
 from django.views.generic.edit import CreateView
+from taggit.models import Tag
 
 from .models import Stones, Typ, Mentions, Authors, Comment
 from movie.models import Movie
 from .forms import StonesForm, MentionsForm, AuthorsForm, CommentForm, \
     StonesImageForm, EmailPostForm
-from taggit.models import Tag
 
 
 def index(request, tag_slug=None):
-    stst = Stones.objects.all()
+    stones = Stones.objects.all()
     typs = Typ.objects.all()
     tag = None
     if tag_slug:
         tag = get_object_or_404(Tag, slug=tag_slug)
-        stst = Stones.objects.filter(tags__in=[tag])
-    context = {'stst': stst, 'typs': typs, 'tag': tag}
+        stones = Stones.objects.filter(tags__in=[tag])
+    context = {'stones': stones, 'typs': typs, 'tag': tag}
     return render(request, 'volumbf/index.html', context)
 
 
