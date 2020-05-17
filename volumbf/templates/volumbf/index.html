@@ -2,17 +2,17 @@
 
 {% block content %}
     {% if tag %}
-        <h2>Posts tagged with "{{ tag.name }}</h2>
+        <h2>Posts tagged with "{{ tag.name }}"</h2>
     {% endif %}
-{% for stones in stst %}
+{% for stone in stones %}
 <div class="b">
-	<h2><a href="{% url 'stone_detail' stones.pk %}">{{ stones.title }}</a></h2>
-	<p><a href="/volumbf/{{ stones.typ.pk }}/">{{ stones.typ.name }}</a></p>
-	<p>{{ stones.legend }} </p>
-	<p>{{ stones.place }}</p>
-    <p><a href="{% url 'stone_detail' stones.pk %}">Comments: {{ stones.approved_comment.count }}</a></p>
-    {% for tag in stst %}
-        <a href="{% url "index_by_tag" tag.slug %}">{{ tag.name }}</a>
+	<h2><a href="{% url 'stone_detail' stone.pk %}">{{ stone.title }}</a></h2>
+	<p><a href="/volumbf/{{ stone.typ.pk }}/">{{ stone.typ.name }}</a></p>
+	<p>{{ stone.legend }} </p>
+	<p>{{ stone.place }}</p>
+    <p><a href="{% url 'stone_detail' stone.pk %}">Comments: {{ stone.approved_comment.count }}</a></p>
+    {% for stone_tag in stone.tags.all %}
+        <a href="{% url 'index_by_tag' stone_tag.slug %}">{{ stone_tag.name }}</a>
         {%  if not forloop.last %}, {% endif %}
     {% endfor %}
 </div>

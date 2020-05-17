@@ -4,6 +4,7 @@ from .views import index, by_typ, bibliography, work_detail, AuthorDetail, add_c
 #author_detail, stone_detail,
 from .views import StonesCreateView, MentionsCreateView, AuthorsCreateView, StonesDetail, StonesImageUpload
 
+
 urlpatterns = [
     path('add/', StonesCreateView.as_view(), name='add'),
     path('<int:typ_id>/', by_typ, name="by_typ"),
