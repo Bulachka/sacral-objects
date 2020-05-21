@@ -2,10 +2,10 @@
 
 {% block content %}
     {% if tag %}
-        <h2>Posts tagged with "{{ tag.name }}"</h2>
+        <h2>Stones tagged with "{{ tag.name }}"</h2>
     {% endif %}
 {% for stone in stones %}
-<div class="b">
+<div class="b" style="color: #FCA205">
 	<h2><a href="{% url 'stone_detail' stone.pk %}">{{ stone.title }}</a></h2>
 	<p><a href="/volumbf/{{ stone.typ.pk }}/">{{ stone.typ.name }}</a></p>
 	<p>{{ stone.legend }} </p>
