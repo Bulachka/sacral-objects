@@ -7,6 +7,8 @@ class StonesAdmin(admin.ModelAdmin):
     list_display = ('title', 'legend', 'place', 'typ')
     list_display_links = ('title', 'legend')
     search_fields = ('title', 'legend', 'place', 'mentions__work')
+    list_filter = ('typ',)
+    #prepopulated_fields = {'slug': ('title', )}
 
 
 admin.site.register(Stones, StonesAdmin)

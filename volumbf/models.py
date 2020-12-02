@@ -21,6 +21,7 @@ class Stones(models.Model):
     place = models.TextField(verbose_name='Месцазнаходжанне')
     legend = models.TextField(null=True, blank=True, verbose_name='Легенда')
     typ = models.ForeignKey('Typ', null=True, on_delete=models.PROTECT, verbose_name='Тып')
+    #slug = models.SlugField(max_length=250)
     tags = TaggableManager()
     objects = StonesManager()
     def __str__(self):
