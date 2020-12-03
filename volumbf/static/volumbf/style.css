@@ -4,7 +4,7 @@ header h1 {
 	text-align: center;
 	background: url("bg.jpg") left / auto 100% no-repeat;
 	color: #FCA205;
-	font-family: 'Lobster';
+	font-family: 'Lobster', serif;
 }
 nav {
 	font-size: 16pt;
