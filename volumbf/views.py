@@ -14,6 +14,9 @@ from movie.models import Movie
 from .forms import StonesForm, MentionsForm, AuthorsForm, CommentForm, \
     StonesImageForm, EmailPostForm
 
+SUBJECT_POST_SHARE_TEMPLATE = '{name} ({email}) recommends you reading {title}'
+MESSAGE_POST_SHARE_TEMPLATE = 'Read about "{title}" at {address}\n\n{name}\'\s comment: {comments}'
+
 
 def index(request, tag_slug=None):
     stones = Stones.objects.all()
@@ -151,11 +154,11 @@ def post_share(request, pk):
         if form.is_valid():
             cd = form.cleaned_data
             post_url = request.build_absolute_uri(post.get_absolute_url())
-            subject = '{} ({}) recommends you reading " {}'.format(cd['name'], cd['email'], post.title)
-            message = 'Read "{}" at {}\n\n{}\'s comments: {}'.format(post.title, post_url, cd['name'], cd['comments'])
-            send_mail(subject, message, 'admin@myblog.com', [cd['to']])
+            subject = SUBJECT_POST_SHARE_TEMPLATE.format(name=cd['name'], email=cd['my_email'], title=post.title)
+            message = MESSAGE_POST_SHARE_TEMPLATE.format(title=post.title, address=post_url, name=cd['name'],
+                                                         comments=cd['comments'])
+            send_mail(subject, message, cd['my_email'], [cd['to_email'], ])
             sent = True
-        else:
-            form = EmailPostForm()
-            return render(request, 'post_share.html', {'post': post, 'form': form, 'sent': sent})
-    return render(request, 'post_share.html', {'post': post, 'sent': sent})#гэтага радка не было ў прыкладзе
+    else:
+        form = EmailPostForm()
+    return render(request, 'post_share.html', {'post': post, 'form': form, 'sent': sent})
