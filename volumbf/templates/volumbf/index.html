@@ -2,7 +2,7 @@
 
 {% block content %}
     {% if tag %}
-        <h2>Stones tagged with "{{ tag.name }}"</h2>
+        <h3>Stones tagged with "{{ tag.name }}"</h3>
     {% endif %}
 {% for stone in stones %}
 <div class="b" style="color: #FCA205">
@@ -11,10 +11,11 @@
 	<p>{{ stone.legend }} </p>
 	<p>{{ stone.place }}</p>
     <p><a href="{% url 'stone_detail' stone.pk %}">Comments: {{ stone.approved_comment.count }}</a></p>
+    <p class="tagi">Тэгі:
     {% for stone_tag in stone.tags.all %}
-        <a href="{% url 'index_by_tag' stone_tag.slug %}">{{ stone_tag.name }}</a>
-        {%  if not forloop.last %}, {% endif %}
-    {% endfor %}
+        <a class="tagi" href="{% url 'index_by_tag' stone_tag.slug %}">
+            {{ stone_tag.name}}</a>{%  if not forloop.last %}, {% endif %}
+    {% endfor %}  </p>
 </div>
 {% endfor %}
 {% endblock %}	

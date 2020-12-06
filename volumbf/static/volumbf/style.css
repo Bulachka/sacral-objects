@@ -1,4 +1,10 @@
+p.tagi a.tagi {
+    color: maroon;
+}
 
+p.tagi {
+    color: maroon;
+}
 
 .sidebar-container {
   position: fixed;
