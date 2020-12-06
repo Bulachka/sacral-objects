@@ -7,7 +7,7 @@
 {% for stone in stones %}
 <div class="b" style="color: #FCA205">
 	<h2><a href="{% url 'stone_detail' stone.pk %}">{{ stone.title }}</a></h2>
-	<p><a href="/volumbf/{{ stone.typ.pk }}/">{{ stone.typ.name }}</a></p>
+	<p><a href="{{ stone.typ.pk }}/">{{ stone.typ.name }}</a></p>
 	<p>{{ stone.legend }} </p>
 	<p>{{ stone.place }}</p>
     <p><a href="{% url 'stone_detail' stone.pk %}">Comments: {{ stone.approved_comment.count }}</a></p>
