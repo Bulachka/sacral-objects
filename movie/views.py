@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.views.generic import (ListView, DetailView,)
@@ -10,6 +11,7 @@ class MovieList(ListView):
     model = Movie
 
 
+@login_required
 def movie_new(request):
     if request.method == "POST":
         form = MovieForm(request.POST)

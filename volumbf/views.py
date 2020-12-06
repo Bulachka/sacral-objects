@@ -1,7 +1,7 @@
 from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
-from django.contrib.auth.mixins import (LoginRequiredMixin)
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .mixins import (CachePageVaryOnCookieMixin)
 
 from django.views import generic
@@ -37,7 +37,7 @@ def by_typ(request, typ_id):
     return render(request, 'volumbf/by_typ.html', context)
 
 
-class StonesCreateView(CreateView):
+class StonesCreateView(LoginRequiredMixin, CreateView):
     template_name = 'volumbf/create.html'
     form_class = StonesForm
     success_url = reverse_lazy('index')
@@ -48,13 +48,13 @@ class StonesCreateView(CreateView):
         return context
 
 
-class MentionsCreateView(CreateView):
+class MentionsCreateView(LoginRequiredMixin, CreateView):
     template_name = 'volumbf/createMentions.html'
     form_class = MentionsForm
     success_url = reverse_lazy('index')
 
 
-class AuthorsCreateView(CreateView):
+class AuthorsCreateView(LoginRequiredMixin, CreateView):
     template_name = 'volumbf/createAuthors.html'
     form_class = AuthorsForm
     success_url = reverse_lazy('index')

@@ -30,15 +30,16 @@ ALLOWED_HOSTS = ['127.0.0.1', 'avalodzina.pythonanywhere.com']
 
 INSTALLED_APPS = [
     'user',
+    'volumbf.apps.VolumbfConfig',
+    'movie',
+    'taggit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'volumbf.apps.VolumbfConfig',
-    'movie',
-    'taggit'
+
 ]
 
 MIDDLEWARE = [
@@ -99,6 +100,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+LOGIN_URL = 'user/login/'
 LOGIN_REDIRECT_URL = 'index'
 
 # Internationalization
