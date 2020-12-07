@@ -10,7 +10,7 @@
    <h4>Месцазнаходжанне: </h4>
 	<p>{{ stones.place }}</p>
    <h4>Тып: </h4>
-	<p><a href="/volumbf/{{ stones.typ.pk }}/">{{ stones.typ.name }}</a></p>
+	<p><a href="{% url "by_typ" typ_id=stones.typ.pk %}">{{ stones.typ.name }}</a></p>
    <h4>Згадкі: </h4>
 	{% for work in stones.mentions.all %}
         <p><a href="{% url 'work_detail' work.pk %}"> {{ work }}</a></p>
@@ -19,7 +19,7 @@
     <ul class="stone-image list-inline" >
         {% for i in object.stonesimage_set.all %}
             <li class="list-inline-item" >
-                <img src="{{ i.image.url }}" alt="{{ i.id }}" width="400" height="300" >
+                <img class="newimage" src="{{ i.image.url }}" alt="{{ i.id }}" width="400" height="300" >
             </li>
         {% endfor %}
    </ul>
@@ -27,6 +27,7 @@
     {% if image_form %}
         <div>
             <h3 >Запампаваць фота</h3>
+            <p>вертыкальныя фота будуць абрэзаныя</p>
         <form method="post"
               enctype="multipart/form-data"
               action="{% url 'StonesImageUpload' stones.pk %}" >

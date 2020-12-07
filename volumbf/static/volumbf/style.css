@@ -35,6 +35,10 @@ header h1 {
     color: darkmagenta;
 }
 
+img.newimage {
+    object-fit: cover;
+}
+
 .sidebar-container {
   position: fixed;
   width: 160px;
