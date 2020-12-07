@@ -3,33 +3,27 @@
 {%  block title %}{{  objects.title }}{% endblock %}
 
 {% block content %}
-    <h1>{{ object }}</h1>
+    <h2>{{ object }}</h2>
     {% if user.is_authenticated %}
          <a class="btn btn-default" href="{% url 'movie:movie_new' pk=movie.pk %}">
              <span class="glyphicon glyphicon-pencil"></span></a>
     {% endif %}
-    <p class="lead">{{ object.plot }}</p>
-         <ul >
-        Director:
+    <h4 >Сюжэт:</h4>
+    <p>{{ object.plot }}</p>
+         <h4 >Рэжысёры:</h4>
             {% for role in object.director.all %}
                 <li >
                     <a href="{% url 'authors_detail' object.id %}"> {{ role }}</a>
                 </li>
             {% endfor %}
-     </ul>
-     <ul >
-        Creators:
+<p></p>
+     <h4 >Стваральнікі:</h4>
             {% for role in object.creators.all %}
                 <li >
                     <a href="{% url 'authors_detail' object.id %}"> {{ role }}</a>: {{ object.partisipation }}
                 </li>
             {% endfor %}
-     </ul>
+    <p></p>
+    <h4 >Тып відэа:</h4>
+        <p>{{  object.get_rating_display }}</span>
   {% endblock %}
-
-{% block sidebar %}
-    <div>
-    Typ of the film:
-        <span class="badge-primary">{{  object.get_rating_display }}</span>
-    </div>
-{% endblock %}

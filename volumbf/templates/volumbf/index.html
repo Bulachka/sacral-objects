@@ -5,12 +5,12 @@
         <h3>Stones tagged with "{{ tag.name }}"</h3>
     {% endif %}
 {% for stone in stones %}
-<div class="b" style="color: #FCA205">
+<div class="b">
 	<h2><a href="{% url 'stone_detail' stone.pk %}">{{ stone.title }}</a></h2>
-	<p><a href="{{ stone.typ.pk }}/">{{ stone.typ.name }}</a></p>
-	<p>{{ stone.legend }} </p>
-	<p>{{ stone.place }}</p>
-    <p><a href="{% url 'stone_detail' stone.pk %}">Comments: {{ stone.approved_comment.count }}</a></p>
+	<p><a href="{{ stone.typ.pk }}/">Тып: {{ stone.typ.name }}</a></p>
+	<p>Легенда: {{ stone.legend }} </p>
+	<p>Месцазнаходжанне: {{ stone.place }}</p>
+    <p>Колькасць каментароў: {{ stone.approved_comment.count }}</p>
     <p class="tagi">Тэгі:
     {% for stone_tag in stone.tags.all %}
         <a class="tagi" href="{% url 'index_by_tag' stone_tag.slug %}">

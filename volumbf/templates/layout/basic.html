@@ -21,28 +21,30 @@
 <header>
 			<h1>Sacral objects</h1>
 		</header>
-		<nav>
-			<a href="{% url 'index' %}">Main</a>
+		<nav class="sidebar-container">
+                {% block sidebar %}
+			<a href="{% url 'index' %}">Галоўная</a>
 			{% for typ in typs %}
 			<a href="{% url 'by_typ' typ.pk %}">{{ typ.name }}</a>
 			{% endfor %}
-			<a href="{% url 'bibliography' %}">Bibliography</a>
-            <a href="/movies/">Movies</a>
+			<a href="{% url 'bibliography' %}">Бібліяграфія</a>
+            <a href="/movies/">Відэа</a>
             {% if user.is_authenticated %}
-                <a href="{% url 'add' %}">Add</a>
-                <a href="{% url 'addPublication' %}">Add publication</a>
-			    <a href="{% url 'addAuthor' %}">Add author</a>
-                <a href="{% url 'movie:movie_new' %}">Add movie</a>
-                <a href="{% url 'user:logout' %}">Log Out</a>
+                <a href="{% url 'add' %}">Дадаць камень</a>
+                <a href="{% url 'addPublication' %}">Дадаць публікацыю</a>
+			    <a href="{% url 'addAuthor' %}">Дадаць аўтара</a>
+                <a href="{% url 'movie:movie_new' %}">Дадаць відэа</a>
+                <a href="{% url 'user:logout' %}">Выйсці</a>
             {% else %}
-                <a href="{% url 'user:login' %}">Log In</a>
+                <a href="{% url 'user:login' %}">Увайсці</a>
             {% endif %}
+                {% endblock %}
 		</nav>
 		<section>
 		{% block content %}
 		{% endblock %}
-        {% block sidebar %}
-        {% endblock %}
+
+
 		</section>
 	</body>
 </html>

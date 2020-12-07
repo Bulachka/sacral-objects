@@ -3,8 +3,8 @@
 {% block title %}{{ authors }}{% endblock %}
 
 {% block content %}
-    <h1>{{ authors }}</h1>
-    <h2>Writer</h2>
+    <h2>{{ authors }}</h2>
+    <h3>Writer</h3>
         <ul >
             {% for work in works %}
                 <li >
@@ -12,7 +12,7 @@
                 </li>
             {% endfor %}
         </ul>
-    <h2>Partisipator</h2>
+    <h3>Partisipator</h3>
             <ul >
             {% for role in object.role_set.all %}
                 <li >
@@ -21,7 +21,7 @@
                 </li>
             {% endfor %}
         </ul>
-    <h2>Director</h2>
+    <h3>Director</h3>
         <ul >{{ movie }}
              {% for movie in movies %}
                 <li >

@@ -6,17 +6,48 @@ p.tagi {
     color: maroon;
 }
 
+header h1 {
+	font-size: 40pt;
+	text-transform: uppercase;
+	text-align: center;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-image: url("bg.jpg");
+    color: darkmagenta;
+	font-family: 'Lobster', serif;
+}
+
+.h2, h2 a {
+    color: deeppink;
+    font-family: 'Lobster', serif;
+}
+
+.h3, h3 {
+    color: darkmagenta;
+}
+
+.h2, h2 {
+    color: deeppink;
+    font-family: 'Lobster', serif;
+}
+
+.h3, h3 a {
+    color: darkmagenta;
+}
+
 .sidebar-container {
   position: fixed;
-  width: 220px;
+  width: 160px;
   height: 100%;
   left: 0;
   overflow-x: hidden;
   overflow-y: auto;
-  background: #1a1a1a;
-  color: #fff;
 }
 
+p {
+    color: darkmagenta;
+}
+/*
 .content-container {
   padding-top: 20px;
 }
@@ -91,14 +122,7 @@ p.tagi {
   padding-left: 220px;
 }
 
-header h1 {
-	font-size: 40pt;
-	text-transform: uppercase;
-	text-align: center;
-	background: url("bg.jpg") left / auto 100% no-repeat;
-	color: #FCA205;
-	font-family: 'Lobster', serif;
-}
+*/
 nav {
 	font-size: 16pt;
 	width: 150px;
@@ -111,3 +135,5 @@ nav a {
 section {
 	margin-left: 170px;
 }
+
+

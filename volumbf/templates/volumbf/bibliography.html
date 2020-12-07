@@ -1,10 +1,10 @@
 {% extends "layout/basic.html" %}
 
 {% block content %}
-<h1>Bibliography</h1>
+<h2>Bibliography</h2>
 {% for work in works %}
 	<div>
-		<h2><a href="{% url 'work_detail' work.pk %}">{{ work }}</a></h2>
+		<h3><a href="{% url 'work_detail' work.pk %}">{{ work }}</a></h3>
 		{% for writer in work.writers %}
    			<p><a href="{% url 'authors_detail' writer.pk %}">{{ writer }}</a></p>
 		{% endfor %}

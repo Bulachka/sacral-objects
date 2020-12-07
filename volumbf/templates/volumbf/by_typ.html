@@ -3,11 +3,13 @@
 {% block title %}{{ current_typ.name }}{% endblock %}
 
 {% block content %}
-<h2>Typ: {{ current_typ.name }}</h2>
+<h3>Тып: {{ current_typ.name }}</h3>
 {% for stones in stst %}
 <div>
-	<h2><a href="{% url 'stone_detail' stones.pk %}">{{ stones.title }} </h2>
+    <h2><a href="{% url 'stone_detail' stones.pk %}">{{ stones.title }} </a></h2>
+   <h4>Легенда: </h4>
 	<p>{{ stones.legend }} </p>
+   <h4>Месцазнаходжанне: </h4>
 	<p>{{ stones.place }}</p>
 </div>
 {% endfor %}

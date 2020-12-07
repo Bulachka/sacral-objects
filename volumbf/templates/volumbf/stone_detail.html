@@ -3,26 +3,30 @@
 {% block content %}
    <div>
 	<h2> {{ stones.title}} </h2>
-    <p class="tags">Tags: {{ stones.tags.all|join:", " }}</p>
+   <h4>Тэгі: </h4>
+    <p class="tags">{{ stones.tags.all|join:", " }}</p>
+   <h4>Легенда: </h4>
 	<p>{{ stones.legend }} </p>
+   <h4>Месцазнаходжанне: </h4>
 	<p>{{ stones.place }}</p>
-	<p>Typ: <a href="/volumbf/{{ stones.typ.pk }}/">{{ stones.typ.name }}</a></p>
-	<p>Mentions: </p>
+   <h4>Тып: </h4>
+	<p><a href="/volumbf/{{ stones.typ.pk }}/">{{ stones.typ.name }}</a></p>
+   <h4>Згадкі: </h4>
 	{% for work in stones.mentions.all %}
         <p><a href="{% url 'work_detail' work.pk %}"> {{ work }}</a></p>
 	{% endfor %}
-
+    <h3>Фотагалерэя: </h3>
     <ul class="stone-image list-inline" >
         {% for i in object.stonesimage_set.all %}
             <li class="list-inline-item" >
-                <img src="{{ i.image.url }}" alt="{{ i.id }}" >
+                <img src="{{ i.image.url }}" alt="{{ i.id }}" width="400" height="300" >
             </li>
         {% endfor %}
    </ul>
 
     {% if image_form %}
         <div>
-            <h2 >Upload New Image</h2>
+            <h3 >Запампаваць фота</h3>
         <form method="post"
               enctype="multipart/form-data"
               action="{% url 'StonesImageUpload' stones.pk %}" >
@@ -33,8 +37,8 @@
         </div>
     {% endif %}
      </div>
-
-   <a class="btn btn-default" href="{% url 'add_comment_to_stone' pk=stones.pk %}">Add comment</a>
+    <h3 >Дадаць каментар</h3>
+   <a class="btn btn-default" href="{% url 'add_comment_to_stone' pk=stones.pk %}">Каментаваць</a>
 {% for comment in stones.comment.all %}
     {% if comment.approved_comment %}
     <div class="comment">
