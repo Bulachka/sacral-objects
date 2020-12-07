@@ -3,11 +3,10 @@
 {% block title %}Add/edit movie{% endblock %}
 
 {% block content %}
-<h2>Дадаць відэа</h2>
+<h2>Дадаць/Змяніць відэа</h2>
 <form method="post" class="post-form">
 	{% csrf_token %}
 	{{ form.as_p }}
-    <button type="submit" class="save btn btn-default">Save</button>
+    <button type="submit" class="btn btn-outline-primary">Захаваць</button>
 </form>
 {% endblock %}
-
