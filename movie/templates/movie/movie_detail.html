@@ -22,7 +22,7 @@
      <h4 >Стваральнікі:</h4>
             {% for role in object.creators.all %}
                 <li >
-                    <a href="{% url 'authors_detail' object.id %}"> {{ role }}</a>: {{ object.partisipation }}
+                    <a href="{% url 'authors_detail' object.id %}"> {{ role }}</a>: {{ role.partisipation }}
                 </li>
             {% endfor %}
     <p></p>
