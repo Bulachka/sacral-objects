@@ -37,6 +37,7 @@ header h1 {
 
 img.newimage {
     object-fit: cover;
+    margin: 10px;
 }
 
 .sidebar-container {

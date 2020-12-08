@@ -33,7 +33,7 @@
               action="{% url 'StonesImageUpload' stones.pk %}" >
             {% csrf_token %}
             {{ image_form.as_p }}
-            <p ><button type="button" class="btn btn-outline-primary">Запампаваць</button> </p>
+            <p ><button class="btn btn-outline-primary" type="submit">Запампаваць</button> </p>
         </form>
         </div>
     {% endif %}
