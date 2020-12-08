@@ -9,12 +9,13 @@ p.tagi {
 header h1 {
 	font-size: 40pt;
 	text-transform: uppercase;
-	text-align: center;
+    padding-left: 200px;
     background-size: auto 100%;
-    background-repeat: no-repeat;
+    background-repeat: repeat-x;
     background-image: url("bg.jpg");
     color: darkmagenta;
 	font-family: 'Lobster', serif;
+    border: darkmagenta solid 1px;
 }
 
 .h2, h2 a {
@@ -35,23 +36,52 @@ header h1 {
     color: darkmagenta;
 }
 
+p {
+    color: darkmagenta;
+}
+
 img.newimage {
     object-fit: cover;
     margin: 10px;
 }
 
 .sidebar-container {
-  position: fixed;
-  width: 160px;
-  height: 100%;
-  left: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
+    margin-top: -18px;
+    position: fixed;
 }
 
-p {
-    color: darkmagenta;
+.sidebar-container a{
+    border: deeppink solid;
+    width: 170px;
+    height: 100%;
+    padding-left: 10px;
+    margin-bottom: -10px;
+    margin-right: 10px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
+
+.sidebar-container a:active,
+.sidebar-container a:hover,
+.sidebar-container a:focus {
+    text-decoration: none;
+    outline: none;
+    background-color: floralwhite;
+}
+
+nav {
+	font-size: 16pt;
+	width: 150px;
+	float: left;
+}
+nav a {
+	display: block;
+	margin: 10px 0px;
+}
+section {
+	margin-left: 200px;
+}
+
 /*
 .content-container {
   padding-top: 20px;
@@ -78,7 +108,7 @@ p {
   line-height: 20px;
 }
 
-.sidebar-navigation li a {
+.sidebar a {
   padding: 10px 15px 10px 30px;
   display: block;
   color: #fff;
@@ -126,19 +156,7 @@ p {
 .content-container {
   padding-left: 220px;
 }
-
 */
-nav {
-	font-size: 16pt;
-	width: 150px;
-	float: left;
-}
-nav a {
-	display: block;
-	margin: 10px 0px;
-}
-section {
-	margin-left: 170px;
-}
+
 
 
