@@ -42,12 +42,14 @@
    <a class="btn btn-outline-primary" href="{% url 'add_comment_to_stone' pk=stones.pk %}">Каментаваць</a>
 {% for comment in stones.comment.all %}
     {% if comment.approved_comment %}
+        <p>Камент № {{ forloop.counter }}</p>
     <div class="comment">
         <div class="date">{{ comment.created_date }}</div>
         <strong>{{ comment.commentator }}</strong>
         <p>{{ comment.text|linebreaks }}</p>
     </div>
     {% endif %}
+    {% empty %} <p>Тут пакуль няма каментаў. Вы можаце пакінуць свой.</p>
 {%  endfor %}
     <!-- <p><a href="{% url "post_share" stones.pk %}">Share this stone</a></p> -->
 {% endblock %}
