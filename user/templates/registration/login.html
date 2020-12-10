@@ -6,12 +6,12 @@
 <form method="post">
 	{% csrf_token %}
 	{{ form.as_p }}
-	<button type="submit" class="btn btn-primary">
+	<button type="submit" class="btn btn-info">
         Увайсці
     </button>
 </form>
 
-    <a class="btn btn-primary" href="{% url 'user:register' %}" role="button">Зарэгістравацца</a>
+    <a class="btn btn-info" href="{% url 'user:register' %}" role="button">Зарэгістравацца</a>
 
 {% endblock %}
 

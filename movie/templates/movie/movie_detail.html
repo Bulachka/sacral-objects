@@ -6,7 +6,7 @@
 
     <h2 class="float-left">{{ object }}</h2>
     {% if user.is_authenticated %}
-        <button type="button" class="btn btn-outline-primary">
+        <button type="button" class="btn btn-outline-info">
             <a href="{% url 'movie:movie_new' pk=movie.pk %}">Правіць апісанне</a></button>
     {% endif %}
 <p></p>

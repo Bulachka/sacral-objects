@@ -1,9 +1,9 @@
 p.tagi a.tagi {
-    color: maroon;
+    color: #138C9E;
 }
 
 p.tagi {
-    color: maroon;
+    color: #138C9E;
 }
 
 header h1 {
@@ -13,31 +13,27 @@ header h1 {
     background-size: auto 100%;
     background-repeat: repeat-x;
     background-image: url("bg.jpg");
-    color: darkmagenta;
-	font-family: 'Lobster', serif;
-    border: darkmagenta solid 1px;
+    color: #138C9E;
+	font-family: 'Pangolin', sans-serif;
+    border: #138C9E solid 1px;
 }
 
 .h2, h2 a {
-    color: deeppink;
-    font-family: 'Lobster', serif;
+    color: #18ADC4;
+    font-family: 'Pangolin', sans-serif;
 }
 
 .h3, h3 {
-    color: darkmagenta;
+    color: #138C9E;
 }
 
 .h2, h2 {
-    color: deeppink;
-    font-family: 'Lobster', serif;
+    color: #18ADC4;
+    font-family: 'Pangolin', sans-serif;
 }
 
 .h3, h3 a {
-    color: darkmagenta;
-}
-
-p {
-    color: darkmagenta;
+    color: #138C9E;
 }
 
 img.newimage {
@@ -51,7 +47,7 @@ img.newimage {
 }
 
 .sidebar-container a{
-    border: deeppink solid;
+    border: #18ADC4 solid;
     width: 170px;
     height: 100%;
     padding-left: 10px;
@@ -66,7 +62,7 @@ img.newimage {
 .sidebar-container a:focus {
     text-decoration: none;
     outline: none;
-    background-color: floralwhite;
+    background-color: azure;
 }
 
 nav {

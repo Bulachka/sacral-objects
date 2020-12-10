@@ -33,13 +33,13 @@
               action="{% url 'StonesImageUpload' stones.pk %}" >
             {% csrf_token %}
             {{ image_form.as_p }}
-            <p ><button class="btn btn-outline-primary" type="submit">Запампаваць</button> </p>
+            <p ><button class="btn btn-outline-info" type="submit">Запампаваць</button> </p>
         </form>
         </div>
     {% endif %}
      </div>
     <h3 >Дадаць каментар</h3>
-   <a class="btn btn-outline-primary" href="{% url 'add_comment_to_stone' pk=stones.pk %}">Каментаваць</a>
+   <a class="btn btn-outline-info" href="{% url 'add_comment_to_stone' pk=stones.pk %}">Каментаваць</a>
 {% for comment in stones.comment.all %}
     {% if comment.approved_comment %}
         <p>Камент № {{ forloop.counter }}</p>

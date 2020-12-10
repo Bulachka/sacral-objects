@@ -7,6 +7,6 @@
 <form method="post" class="post-form">
 	{% csrf_token %}
 	{{ form.as_p }}
-    <button type="submit" class="btn btn-outline-primary">Захаваць</button>
+    <button type="submit" class="btn btn-outline-info">Захаваць</button>
 </form>
 {% endblock %}
