@@ -8,6 +8,7 @@ p.tagi {
 
 header h1 {
 	font-size: 40pt;
+    text-shadow: 1px 1px azure;
 	text-transform: uppercase;
     padding-left: 200px;
     background-size: auto 100%;
