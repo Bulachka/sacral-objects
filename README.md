@@ -4,7 +4,8 @@ The project is dedicated to the Belarusian sacral stones, that play an important
 Each stone has its name, type according to its sacral purpose, legend and placement. It could be connected 
 with books and videos, where it is mentioned, and through them - with their authors.
 
-## Requirements 
+## Requirements: 
+Python 3.8.2
 `pip install -r requirements.dev.txt`
 
 ## Usage
