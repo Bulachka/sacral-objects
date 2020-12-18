@@ -5,7 +5,7 @@ Each stone has its name, type according to its sacral purpose, legend and placem
 with books and videos, where it is mentioned, and through them - with their authors.
 
 ## Requirements 
-pip install -r requirements.dev.txt
+`pip install -r requirements.dev.txt`
 
 ## Usage
 There is the list of the stones with short description, tags and number of comments on the main page.
