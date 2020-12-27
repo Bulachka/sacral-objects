@@ -14,7 +14,7 @@ from movie.models import Movie
 from .forms import StonesForm, MentionsForm, AuthorsForm, CommentForm, \
     StonesImageForm, EmailPostForm
 
-SUBJECT_POST_SHARE_TEMPLATE = '{name} ({email}) recommends you reading {title}'
+SUBJECT_POST_SHARE_TEMPLATE = '{name} recommends you reading {title}'
 MESSAGE_POST_SHARE_TEMPLATE = 'Read about "{title}" at {address}\n\n{name}\'\s comment: {comments}'
 
 
@@ -153,11 +153,11 @@ def post_share(request, pk):
         form = EmailPostForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            post_url = request.build_absolute_uri(post.get_absolute_url())
-            subject = SUBJECT_POST_SHARE_TEMPLATE.format(name=cd['name'], email=cd['my_email'], title=post.title)
+            post_url = request.build_absolute_uri()
+            subject = SUBJECT_POST_SHARE_TEMPLATE.format(name=cd['name'], title=post.title)
             message = MESSAGE_POST_SHARE_TEMPLATE.format(title=post.title, address=post_url, name=cd['name'],
                                                          comments=cd['comments'])
-            send_mail(subject, message, cd['my_email'], [cd['to_email'], ])
+            send_mail(subject, message, 'sacral.objects@gmail.com', [cd['to_email'], ])
             sent = True
     else:
         form = EmailPostForm()

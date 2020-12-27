@@ -134,9 +134,9 @@ CACHES = {
 }
 CSRF_USE_SESSIONS = True
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = 'bulachka.av@gmail.com'
-# EMAIL_HOST_PASSWORD = "passwordфф"
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'sacral.objects@gmail.com'
+EMAIL_HOST_PASSWORD = "SacralObjects777"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
