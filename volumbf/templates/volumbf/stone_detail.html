@@ -51,5 +51,7 @@
     {% endif %}
     {% empty %} <p>Тут пакуль няма каментаў. Вы можаце пакінуць свой.</p>
 {%  endfor %}
-    <!-- <p><a href="{% url "post_share" stones.pk %}">Share this stone</a></p> -->
+    <br>
+    <h3 >Падзяліцца аб'ектам з сябрамі</h3>
+    <a class="btn btn-outline-info" href="{% url "post_share" stones.pk %}">Share this stone</a>
 {% endblock %}

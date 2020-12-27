@@ -16,8 +16,8 @@
             <ul >
             {% for role in object.role_set.all %}
                 <li >
-                    <a href="{% url 'movie:MovieDetail' role.movie.id %}"> {{ role.movie }}</a>:
-                    {{ role.participation }}
+                    <a href="{% url 'movie:MovieDetail' role.movie.id %}"> {{ role.movie }}</a>: test
+                    {{ }}
                 </li>
             {% endfor %}
         </ul>
