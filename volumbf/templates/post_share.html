@@ -4,8 +4,10 @@
 
 {% block content %}
     {% if sent %}
-       <h2>E-mail successfully sent</h2>
-        <p>"{{ post.title }}" was successfully sent to {{ form.cleaned_data.to_email }}.</p>
+       <h2>E-mail паспяхова адпраўлены</h2>
+        <br>
+        <p>"{{ post.title }}" адасланы на адрас {{ form.cleaned_data.to_email }}.</p>
+        <p><a href="{% url 'stone_detail' post.pk %}">Назад да адасланага камяня</a></p>
     {% else %}
         <h2>Share "{{ post.title }}" by e-mail</h2>
         <br>
