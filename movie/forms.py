@@ -10,6 +10,12 @@ class MovieForm(forms.ModelForm):
         model = Movie
         fields = ('title', 'plot', 'year', 'rating', 'director', 'creators', 'website')
 
+
+class EmailPostForm(forms.Form):
+    name = forms.CharField(max_length=25)
+    to_email = forms.EmailField()
+    comments = forms.CharField(required=False, widget=forms.Textarea)
+
 """
 class VoteForm(forms.ModelForm):
     user = forms.ModelChoiceField(

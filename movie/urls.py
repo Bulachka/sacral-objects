@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import movie_new, movie_edit
+from .views import movie_new, movie_edit, movie_share
 
 app_name = 'movie'
 urlpatterns = [
@@ -8,5 +8,5 @@ urlpatterns = [
     path('movie/<int:pk>/', views.MovieDetail.as_view(), name='MovieDetail'),
     path('movie/new/', movie_new, name='movie_new'),
     path('movie/<int:pk>/edit/', movie_edit, name='movie_new'),
-
+    path('movie/<int:pk>/share/', movie_share, name='movie_share'),
 ]

@@ -28,4 +28,8 @@
     <p></p>
     <h4 >Тып відэа:</h4>
         <p>{{  object.get_rating_display }}<p>
+
+        <br>
+    <h3 >Падзяліцца аб'ектам з сябрамі</h3>
+    <a class="btn btn-outline-info" href="{% url "movie:movie_share" movie.pk %}">Падзяліцца відэа</a>
   {% endblock %}
