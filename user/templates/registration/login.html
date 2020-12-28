@@ -3,6 +3,7 @@
 {% block title %}Login - {{ block.super }}{% endblock %}
 
 {% block content %}
+    <br>
 <form method="post">
 	{% csrf_token %}
 	{{ form.as_p }}
@@ -12,6 +13,7 @@
 </form>
 
     <a class="btn btn-info" href="{% url 'user:register' %}" role="button">Зарэгістравацца</a>
+    <a href="{%  url "user:password_reset" %}">Забыліся Ваш пароль?</a>
 
 {% endblock %}
 
