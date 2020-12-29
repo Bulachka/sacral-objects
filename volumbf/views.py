@@ -161,4 +161,4 @@ def post_share(request, pk):
             sent = True
     else:
         form = EmailPostForm()
-    return render(request, 'post_share.html', {'post': post, 'form': form, 'sent': sent})
+    return render(request, 'volumbf/post_share.html', {'post': post, 'form': form, 'sent': sent})

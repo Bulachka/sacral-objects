@@ -4,10 +4,12 @@
 
 {% block content %}
     {% if sent %}
-       <h1>E-mail successfully sent</h1>
-        <p>"{{ post.title }}" was successfully sent to {{ form.cleaned_data.to }}.</p>
+       <h2>E-mail паспяхова адпраўлены</h2>
+        <br>
+        <p>"{{ post.title }}" адасланы на адрас {{ form.cleaned_data.to_email }}.</p>
+        <p><a href="{% url 'stone_detail' post.pk %}">Назад да адасланага камяня</a></p>
     {% else %}
-        <h1>Share "{{ post.title }}" by e-email</h1>
+        <h2>Share "{{ post.title }}" by e-mail</h2>
         <br>
         <form action="." method="post">
             {{  form.as_p }}{% csrf_token %}
@@ -15,4 +17,3 @@
         </form>
     {% endif %}
 {% endblock %}
-

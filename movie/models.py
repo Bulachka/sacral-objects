@@ -3,6 +3,7 @@ from volumbf.models import Authors, Stones, Mentions
 from django.conf import settings
 from django.db.models.aggregates import (Sum)
 
+
 class MovieManager(models.Manager):
 
     def all_with_prefetch_authors(self):
@@ -27,6 +28,7 @@ class MovieManager(models.Manager):
             '-vote_sum')
         return qs
 """
+
 
 class Movie(models.Model):
     DOCUMENTARY = 0
@@ -58,7 +60,8 @@ class Movie(models.Model):
 
     def __str__(self):
         return '{} ({})'.format(self.title, self.year)
-    
+
+
 class Role(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.DO_NOTHING, verbose_name='Фільм')
     author = models.ForeignKey(Authors, on_delete=models.DO_NOTHING, verbose_name='Аўтар')
@@ -71,6 +74,8 @@ class Role(models.Model):
         unique_together = ('movie', 'author', 'participation')
         verbose_name = 'Удзел'
         verbose_name_plural = 'Удзел'
+
+
 """
 class VoteManager(models.Manager):
     def get_vote_or_unsaved_blank_vote(self, movie, user):

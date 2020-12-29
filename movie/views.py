@@ -25,7 +25,7 @@ def movie_new(request):
             return redirect('movie:MovieList')
     else:
         form = MovieForm()
-    return render(request, 'movie_new', {'form': form})
+    return render(request, 'movie/movie_new', {'form': form})
 
 
 def movie_edit(request, pk):
@@ -38,7 +38,7 @@ def movie_edit(request, pk):
             return redirect('movie:MovieList')
     else:
         form = MovieForm(instance=post)
-    return render(request, 'movie_new', {'form': form})
+    return render(request, 'movie/movie_new', {'form': form})
 
 
 def movie_share(request, pk):
@@ -56,7 +56,7 @@ def movie_share(request, pk):
             sent = True
     else:
         form = EmailPostForm()
-    return render(request, 'movie_share.html', {'movie': movie, 'form': form, 'sent': sent})
+    return render(request, 'movie/movie_share.html', {'movie': movie, 'form': form, 'sent': sent})
 
 
 class MovieDetail(DetailView):
